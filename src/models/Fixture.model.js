@@ -48,7 +48,7 @@ const FixtureSchema = new mongoose.Schema(
     away_team: {
       type: mongoose.Types.ObjectId,
       ref: 'team',
-      index: index,
+      index: true,
     },
     result: {
       type: String,
