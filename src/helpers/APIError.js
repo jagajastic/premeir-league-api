@@ -19,6 +19,12 @@ class ExtendableError extends Error {
   }
 }
 
+/**
+ *Custome API error extendables
+ *
+ * @class APIError
+ * @extends {ExtendableError}
+ */
 class APIError extends ExtendableError {
   constructor({
     message,
