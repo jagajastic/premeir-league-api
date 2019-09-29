@@ -90,7 +90,7 @@ UserSchema.methods = {
   },
 };
 
-UserSchema.static = {
+UserSchema.statics = {
   /**
    *
    *
@@ -99,7 +99,6 @@ UserSchema.static = {
    */
   async loginAndGenerateToken(payload) {
     const { email, password } = payload;
-
     if (!email) {
       throw new APIError({
         message: 'An email is required to generate a token',
