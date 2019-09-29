@@ -3,84 +3,50 @@
 /**
  * Module dependencies.
  */
+const mongoose = require('mongoose');
+const config = require('../src/config/env');
+const app = require('../src/app');
+const debug = require('debug')('premeir-league-api:server');
+const http = require('http');
+const util = require('util');
 
-var app = require('../src/app');
-var debug = require('debug')('premeir-league-api:server');
-var http = require('http');
+Promise = require('bluebird');
 
-/**
- * Get port from environment and store in Express.
- */
+const seedDatabase = require('../src/seed/index');
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+mongoose.Promise = Promise;
+
+const mongoUri = config.mongo.host;
+mongoose.connect(mongoUri, {
+  keepAlive: 1,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
+mongoose.connection.on('error', () => {
+  throw new Error(`unable to coneect to database: ${mongoUri}`);
+});
+
+if (config.mongooseDebug) {
+  mongoose.set('debug', (collectionName, method, query, doc) => {
+    debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
+  });
+}
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.Server(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+if (process.env.NODE_ENV !== 'test') {
+  seedDatabase();
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
+  server.listen(config.port, () => {
+    console.info(`server started on port ${config.port} (${config.env})`);
+  });
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  debug('Listening on ' + bind);
-}
+module.exports = server;
