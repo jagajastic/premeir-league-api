@@ -1,8 +1,7 @@
 const moment = require('moment-timezone');
 const jwt = require('jwt-simple');
 
-const jwtExpirationInterval = 86400;
-const jwtSecret = 'abcdefghijklmnopqrstuvwxyz0987654321';
+const { jwtExpirationInterval, jwtSecret } = require('../config/env');
 
 /**
  * Token Encoder
