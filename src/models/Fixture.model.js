@@ -93,7 +93,7 @@ FixtureSchema.methods = {
   },
 };
 
-FixtureSchema.status = {
+FixtureSchema.statics = {
   /**
    *Reurn result base on id passed
    *
@@ -145,11 +145,11 @@ FixtureSchema.status = {
     try {
       let fixtures = [];
       let searchRegex = [
-        { time: { $regex: formatQuery(query), $option: 'i' } },
-        { status: { $regex: formatQuery(query), $option: 'i' } },
-        { stadium: { $regex: formatQuery(query), $option: 'i' } },
-        { home: { $regex: formatQuery(query), $option: 'i' } },
-        { away: { $regex: formatQuery(query), $option: 'i' } },
+        { time: { $regex: formatQuery(query), $options: 'i' } },
+        { status: { $regex: formatQuery(query), $options: 'i' } },
+        { stadium: { $regex: formatQuery(query), $options: 'i' } },
+        { home: { $regex: formatQuery(query), $options: 'i' } },
+        { away: { $regex: formatQuery(query), $options: 'i' } },
       ];
 
       if (query) {
