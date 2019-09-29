@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require('fake-indexeddb/auto');
 const FixtureModel = require('../Fixture.model');
 
 describe('Fixture model', () => {
