@@ -131,9 +131,9 @@ TeamSchema.statics = {
     try {
       let teams = [];
       let searchRegex = [
-        { name: { $regex: formatQuery(query), $option: 'i' } },
-        { coach: { $regex: formatQuery(query), $option: 'i' } },
-        { stadium: { $regex: formatQuery(query), $optioin: 'i' } },
+        { name: { $regex: formatQuery(query), $options: 'i' } },
+        { coach: { $regex: formatQuery(query), $options: 'i' } },
+        { stadium: { $regex: formatQuery(query), $options: 'i' } },
       ];
 
       if (query) {
