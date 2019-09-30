@@ -9,7 +9,8 @@ git clone https://github.com/jagajastic/premeir-league-api.git
 <code>
 yarn install
 </code>
-Run the server with 
+
+## Run the server with 
 
 <code>
 yarn 
