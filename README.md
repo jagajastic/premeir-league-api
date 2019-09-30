@@ -13,7 +13,5 @@ yarn install
 ## Run the server with 
 
 <code>
-yarn 
-
 yarn start
 </code>
