@@ -1,4 +1,23 @@
-# Premeir League API Bootstrap with Express generator
+# Software Developer Application Test
+
+Create a API that serves the latest scores of fixtures of matches in a “**Mock Premier League**”
+
+## User Types
+
+There should be:
+
+- **Admin accounts** which are used to
+  - signup/login
+  - manage teams (add, remove, edit, view)
+  - create fixtures (add, remove, edit, view)
+  - Generate unique links for fixture
+- **Users accounts** who can
+  - signup/login
+  - view teams
+  - view completed fixtures
+  - view pending fixtures
+  - robustly search fixtures/teams
+- Only the search API should be availble to the public.
 
 ## Clone Repo
 <code>
@@ -15,3 +34,10 @@ yarn install
 <code>
 yarn start
 </code>
+
+
+
+[Documentation](https://documenter.getpostman.com/view/8981654/SVtN3ri9?version=latest#51d13598-8a49-c83c-ff95-56fa90c3763d)
+
+
+Deployed at [Heroku]()
