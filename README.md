@@ -40,4 +40,4 @@ yarn start
 [Documentation](https://documenter.getpostman.com/view/8981654/SVtN3ri9?version=latest#51d13598-8a49-c83c-ff95-56fa90c3763d)
 
 
-Deployed at [Heroku]()
+Deployed at [Heroku](https://premeir-league-api.herokuapp.com/api/v1/health-check)
